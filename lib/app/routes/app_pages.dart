@@ -15,6 +15,17 @@ import '/app/pages/profile/bindings/profile_binding.dart';
 import '/app/pages/profile/views/profile_view.dart';
 import '/app/pages/goal/bindings/goal_binding.dart';
 import '/app/pages/goal/views/goal_view.dart';
+import '/app/pages/create_booking/bindings/create_booking_binding.dart';
+import '/app/pages/create_booking/views/create_booking_view.dart';
+import '/app/pages/bookings_list/bindings/bookings_list_binding.dart';
+import '/app/pages/bookings_list/views/bookings_list_view.dart';
+import '/app/pages/booking_details/bindings/booking_details_binding.dart';
+import '/app/pages/booking_details/views/booking_details_view.dart';
+import '../pages/intro/login/bindings/login_binding.dart';
+import '../pages/intro/login/views/login_view.dart';
+import '../pages/intro/registration/bindings/registration_binding.dart';
+import '../pages/intro/registration/views/registration_view.dart';
+
 part 'app_routes.dart';
 
 class AppPages {
@@ -55,6 +66,31 @@ class AppPages {
       name: Routes.goal,
       page: () => GoalView(),
       binding: GoalBinding(),
+    ),
+    GetPage(
+      name: Routes.login,
+      page: () => LoginView(),
+      binding: LoginBinding(),
+    ),
+    GetPage(
+      name: Routes.registration,
+      page: () => RegistrationView(),
+      binding: RegistrationBinding(),
+    ),
+    GetPage(
+      name: Routes.createBooking,
+      page: () => CreateBookingView(),
+      binding: CreateBookingBinding(),
+    ),
+    GetPage(
+      name: Routes.bookingsList,
+      page: () => BookingsListView(),
+      binding: BookingsListBinding(),
+    ),
+    GetPage(
+      name: Routes.bookingDetails,
+      page: () => BookingDetailsView(),
+      binding: BookingDetailsBinding(),
     ),
   ];
 }

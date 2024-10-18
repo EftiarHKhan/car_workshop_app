@@ -9,6 +9,11 @@ abstract class Routes {
   static const  statistics = _Paths.statistics;
   static const  profile = _Paths.profile;
   static const  goal = _Paths.goal;
+  static const  login = _Paths.login;
+  static const  registration = _Paths.registration;
+  static const  createBooking = _Paths.createBooking;
+  static const  bookingsList = _Paths.bookingsList;
+  static const  bookingDetails = _Paths.bookingDetails;
 
 }
 
@@ -20,5 +25,10 @@ abstract class _Paths {
   static const  statistics = '/statistics';
   static const  profile = '/profile';
   static const  goal = '/goal';
+  static const  login = '/login';
+  static const  registration = '/registration';
+  static const  createBooking = '/create_booking';
+  static const  bookingsList = '/bookings_list';
+  static const  bookingDetails = '/booking_details';
 
 }
