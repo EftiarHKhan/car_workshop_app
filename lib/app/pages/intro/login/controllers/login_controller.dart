@@ -1,11 +1,14 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-  import '/app/core/base/base_controller.dart';
-  
+import '/app/core/base/base_controller.dart';
+
 class LoginController extends BaseController {
- @override
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final role = ['Admin', 'Mechanic'].obs;
+
+  @override
   Future<void> onInit() async {
     super.onInit();
   }
-
 }
-  
