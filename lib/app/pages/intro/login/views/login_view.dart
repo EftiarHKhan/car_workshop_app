@@ -1,4 +1,5 @@
 import 'package:car_workshop_app/app/core/base/base_controller.dart';
+import 'package:car_workshop_app/app/core/values/app_colors.dart';
 import 'package:car_workshop_app/app/core/values/app_values.dart';
 import 'package:car_workshop_app/app/core/values/text_styles.dart';
 import 'package:dropdown_flutter/custom_dropdown.dart';
@@ -51,11 +52,34 @@ class LoginView extends BaseView<LoginController> {
               log('changing value to: $value');
             },
           ),
+          16.height,
+          Row(
+            mainAxisAlignment: centerMAA,
+            children: [
+              const Text('Don\'t have an account?'),
+              8.width,
+              InkWell(
+                onTap: controller.goToRegistrationView,
+                child: const Text(
+                  'Register',
+                ),
+              ),
+            ],
+          ),
           20.height,
           InkWell(
             child: Container(
+              padding: const EdgeInsets.symmetric(
+                vertical: 8,
+                horizontal: 16,
+              ),
+              decoration: BoxDecoration(
+                color: AppColors.colorPrimary,
+                borderRadius: BorderRadius.circular(8),
+              ),
               child: const Text(
                 'Login',
+                style: labelStyleWhite,
               ),
             ),
           ),
