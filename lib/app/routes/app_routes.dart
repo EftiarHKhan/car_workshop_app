@@ -8,7 +8,6 @@ abstract class Routes {
   static const  activity = _Paths.activity;
   static const  statistics = _Paths.statistics;
   static const  profile = _Paths.profile;
-  static const  goal = _Paths.goal;
   static const  login = _Paths.login;
   static const  registration = _Paths.registration;
   static const  createBooking = _Paths.createBooking;
@@ -24,7 +23,6 @@ abstract class _Paths {
   static const  activity = '/activity';
   static const  statistics = '/statistics';
   static const  profile = '/profile';
-  static const  goal = '/goal';
   static const  login = '/login';
   static const  registration = '/registration';
   static const  createBooking = '/create_booking';

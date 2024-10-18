@@ -7,14 +7,8 @@ import '/app/pages/app_root/bindings/app_root_binding.dart';
 import '/app/pages/app_root/views/app_root_view.dart';
 import '/app/pages/home/bindings/home_binding.dart';
 import '/app/pages/home/views/home_view.dart';
-import '/app/pages/activity/bindings/activity_binding.dart';
-import '/app/pages/activity/views/activity_view.dart';
-import '/app/pages/statistics/bindings/statistics_binding.dart';
-import '/app/pages/statistics/views/statistics_view.dart';
 import '/app/pages/profile/bindings/profile_binding.dart';
 import '/app/pages/profile/views/profile_view.dart';
-import '/app/pages/goal/bindings/goal_binding.dart';
-import '/app/pages/goal/views/goal_view.dart';
 import '/app/pages/create_booking/bindings/create_booking_binding.dart';
 import '/app/pages/create_booking/views/create_booking_view.dart';
 import '/app/pages/bookings_list/bindings/bookings_list_binding.dart';
@@ -48,24 +42,9 @@ class AppPages {
       binding: HomeBinding(),
     ),
     GetPage(
-      name: Routes.activity,
-      page: () => ActivityView(),
-      binding: ActivityBinding(),
-    ),
-    GetPage(
-      name: Routes.statistics,
-      page: () => StatisticsView(),
-      binding: StatisticsBinding(),
-    ),
-    GetPage(
       name: Routes.profile,
       page: () => ProfileView(),
       binding: ProfileBinding(),
-    ),
-    GetPage(
-      name: Routes.goal,
-      page: () => GoalView(),
-      binding: GoalBinding(),
     ),
     GetPage(
       name: Routes.login,

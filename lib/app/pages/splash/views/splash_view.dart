@@ -23,7 +23,7 @@ class SplashView extends BaseView<SplashController> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'Fitness Tracking App',
+            'Car Workshop',
             style: boldTextStyle(size: 20),
           ),
         ],

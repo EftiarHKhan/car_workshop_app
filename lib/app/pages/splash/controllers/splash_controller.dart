@@ -10,7 +10,7 @@ class SplashController extends BaseController {
 
     await 2.delay();
     Get.offNamed(
-      Routes.appRoot,
+      Routes.login,
     );
   }
 }
