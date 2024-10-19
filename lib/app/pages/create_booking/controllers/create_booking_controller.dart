@@ -46,6 +46,7 @@ class CreateBookingController extends BaseController {
         'startDate': startDate.value,
         'endDate': endDate.value,
         'mechanic': selectedMechanic.value,
+        'createdAt': FieldValue.serverTimestamp(),
       },
     );
   }
