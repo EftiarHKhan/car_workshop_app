@@ -68,6 +68,7 @@ class LoginView extends BaseView<LoginController> {
           ),
           20.height,
           InkWell(
+            onTap: controller.onTapLogin,
             child: Container(
               padding: const EdgeInsets.symmetric(
                 vertical: 8,

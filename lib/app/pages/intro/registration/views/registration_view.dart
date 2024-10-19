@@ -66,6 +66,7 @@ class RegistrationView extends BaseView<RegistrationController> {
           ),
           20.height,
           InkWell(
+            onTap: controller.onTapRegister,
             child: Container(
               padding: const EdgeInsets.symmetric(
                 vertical: 8,
