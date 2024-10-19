@@ -47,7 +47,7 @@ class RegistrationView extends BaseView<RegistrationController> {
             items: controller.role,
             initialItem: controller.role[0],
             onChanged: (value) {
-              log('changing value to: $value');
+              controller.selectedRole.value = value!;
             },
           ),
           16.height,

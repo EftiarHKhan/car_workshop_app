@@ -44,15 +44,6 @@ class LoginView extends BaseView<LoginController> {
             ),
           ),
           16.height,
-          DropdownFlutter<String>(
-            hintText: 'Select job role',
-            items: controller.role,
-            initialItem: controller.role[0],
-            onChanged: (value) {
-              log('changing value to: $value');
-            },
-          ),
-          16.height,
           Row(
             mainAxisAlignment: centerMAA,
             children: [

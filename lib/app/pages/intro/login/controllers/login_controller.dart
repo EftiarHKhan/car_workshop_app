@@ -47,6 +47,10 @@ class LoginController extends BaseController {
       String role = userSnapshot.get('role');
       toast('Login successful');
 
+      Get.toNamed(Routes.bookingsList, arguments: {
+        'role': role,
+      });
+
       // Navigate to different dashboards based on role
       if (role == 'Admin') {
         // Navigate to admin dashboard
