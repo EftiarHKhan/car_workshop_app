@@ -53,16 +53,16 @@ class CreateBookingController extends BaseController {
 
   void dummyFunction() {
     // Dummy function
-    carMakeController.text = 'Toyota';
-    carModelController.text = 'Corolla';
+    carMakeController.text = 'Mercedes-Benz';
+    carModelController.text = 'C-Class';
     carYearController.text = '2020';
     carRegistrationPlateController.text = 'ABC1234';
-    customerNameController.text = 'John Doe';
-    customerEmailController.text = 'johndoe@gmail.com';
+    customerNameController.text = 'Abir Doe';
+    customerEmailController.text = 'abirdoe@gmail.com';
     customerPhoneController.text = '1234567890';
-    bookingTitleController.text = 'Oil Change';
-    startDate.value = '2024-12-01';
-    endDate.value = '2024-12-02';
-    selectedMechanic.value = 'hridoy@gmail.com';
+    bookingTitleController.text = 'Full Service';
+    startDate.value = '2024-12-08';
+    endDate.value = '2024-12-10';
+    selectedMechanic.value = 'akik@gmail.com';
   }
 }

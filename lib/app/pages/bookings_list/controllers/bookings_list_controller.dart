@@ -8,6 +8,7 @@ import '/app/core/base/base_controller.dart';
 
 class BookingsListController extends BaseController {
   final role = ''.obs;
+  //final userEmail = FirebaseAuth.instance.currentUser!.email;
   final bookingList = Rx<List<BookingDetails>?>(null);
 
   // Firebase Auth and Firestore instances
@@ -36,11 +37,24 @@ class BookingsListController extends BaseController {
 
   Future<void> fetchBookings() async {
     try {
-      final snapshot = await _firestore.collection('bookings').get();
-      if (snapshot.docs.isNotEmpty) {
-        bookingList.value = snapshot.docs
-            .map((doc) => BookingDetails.fromJson(doc.data()))
-            .toList();
+      if (role.value == 'Admin') {
+        final snapshot = await _firestore.collection('bookings').get();
+        if (snapshot.docs.isNotEmpty) {
+          bookingList.value = snapshot.docs
+              .map((doc) => BookingDetails.fromJson(doc.data()))
+              .toList();
+        }
+      } else {
+        final snapshot = await _firestore
+            .collection('bookings')
+            .where('mechanic',
+                isEqualTo: FirebaseAuth.instance.currentUser!.email)
+            .get();
+        if (snapshot.docs.isNotEmpty) {
+          bookingList.value = snapshot.docs
+              .map((doc) => BookingDetails.fromJson(doc.data()))
+              .toList();
+        }
       }
     } catch (e, errorStackTrace) {
       // Handle any errors during the fetch process
