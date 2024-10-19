@@ -8,12 +8,20 @@ class CreateBookingView extends BaseView<CreateBookingController> {
     
   @override
   PreferredSizeWidget? appBar(BuildContext context) {
-    return null;
+    return AppBar(
+      title: Text('Create Booking'),
+    );
   }
   
   @override
   Widget body(BuildContext context) {
-    return Container();
+    return Container(
+      child: Column(
+        children: [
+          Text('CreateBookingView'),
+        ],
+      ),
+    );
   }
 }
   

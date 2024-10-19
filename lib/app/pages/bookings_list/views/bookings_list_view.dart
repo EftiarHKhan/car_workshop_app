@@ -49,35 +49,38 @@ class BookingsListView extends BaseView<BookingsListController> {
   }
 
   Widget _buildCardView() {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      margin: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 1,
-            blurRadius: 2,
-            offset: Offset(0, 1),
-          ),
-        ],
-      ),
-      child: Column(
-        mainAxisSize: minMAS,
-        children: [
-          Text('booking title'),
-          8.height,
-          Row(
-            mainAxisAlignment: spaceBetweenMAA,
-            children: [
-              Text('booking date'),
-              8.width,
-              Text('booking time'),
-            ],
-          ),
-        ],
+    return InkWell(
+      onTap: controller.navigateToBookingDetails,
+      child: Container(
+        padding: const EdgeInsets.all(8),
+        margin: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 2,
+              offset: Offset(0, 1),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisSize: minMAS,
+          children: [
+            Text('booking title'),
+            8.height,
+            Row(
+              mainAxisAlignment: spaceBetweenMAA,
+              children: [
+                Text('booking date'),
+                8.width,
+                Text('booking time'),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -87,9 +90,7 @@ class BookingsListView extends BaseView<BookingsListController> {
     if (controller.role.value == 'Mechanic') return null;
 
     return FloatingActionButton(
-      onPressed: () {
-        // Add your onPressed code here!
-      },
+      onPressed: controller.navigateToCreateBooking,
       child: Icon(Icons.add),
     );
   }

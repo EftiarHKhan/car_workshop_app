@@ -30,4 +30,12 @@ class BookingsListController extends BaseController {
       toast('Error logging out');
     }
   }
+
+  void navigateToBookingDetails() {
+    Get.toNamed(Routes.bookingDetails);
+  }
+
+  void navigateToCreateBooking() {
+    Get.toNamed(Routes.createBooking);
+  }
 }
