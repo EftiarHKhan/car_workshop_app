@@ -41,13 +41,17 @@ class BookingDetails {
       customerEmail: json['customerEmail'] as String,
       customerPhone: json['customerPhone'] as String,
       bookingTitle: json['bookingTitle'] as String,
-      startDate: (json['startDate'] as Timestamp)
-          .toDate(), // Convert Firestore Timestamp to DateTime
-      endDate: (json['endDate'] as Timestamp).toDate(),
+      startDate: json['startDate'] is Timestamp
+          ? (json['startDate'] as Timestamp).toDate()
+          : DateTime.parse(json['startDate'] as String),
+      endDate: json['endDate'] is Timestamp
+          ? (json['endDate'] as Timestamp).toDate()
+          : DateTime.parse(json['endDate'] as String),
       mechanic: json['mechanic'] as String,
-      createdAt: json['createdAt'] != null
-          ? (json['createdAt'] as Timestamp)
-              .toDate() // Handle nullable createdAt
+      createdAt: json['createdAt'] != null && json['createdAt'] is Timestamp
+          ? (json['createdAt'] as Timestamp).toDate()
+          : json['createdAt'] != null
+          ? DateTime.parse(json['createdAt'] as String)
           : null,
     );
   }

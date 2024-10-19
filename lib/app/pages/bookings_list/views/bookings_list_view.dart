@@ -1,5 +1,7 @@
 import 'package:car_workshop_app/app/core/base/base_controller.dart';
+import 'package:car_workshop_app/app/model/booking_details.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 import '/app/core/base/base_view.dart';
 import '/app/pages/bookings_list/controllers/bookings_list_controller.dart';
@@ -16,39 +18,48 @@ class BookingsListView extends BaseView<BookingsListController> {
   @override
   Widget body(BuildContext context) {
     return Container(
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: spaceBetweenMAA,
+      child: Obx(
+        () {
+          return Column(
             children: [
-              Text('BookingsListView'),
-              8.width,
-              TextButton(
-                onPressed: controller.logout,
-                child: Text('Logout'),
+              Row(
+                mainAxisAlignment: spaceBetweenMAA,
+                children: [
+                  Text('BookingsListView'),
+                  8.width,
+                  TextButton(
+                    onPressed: controller.logout,
+                    child: Text('Logout'),
+                  ),
+                ],
+              ),
+              16.height,
+              Expanded(
+                child: _buildBookingList(),
               ),
             ],
-          ),
-          16.height,
-          Expanded(
-            child: _buildBookingList(),
-          ),
-        ],
+          );
+        },
       ),
     );
   }
 
   Widget _buildBookingList() {
     return ListView.builder(
-      itemCount: 10,
+      itemCount: controller.bookingList.value?.length ?? 0,
       shrinkWrap: true,
       itemBuilder: (context, index) {
-        return _buildCardView();
+        final bookingDetails = controller.bookingList.value![index];
+        return _buildCardView(
+          bookingDetails: bookingDetails,
+        );
       },
     );
   }
 
-  Widget _buildCardView() {
+  Widget _buildCardView({
+    required BookingDetails bookingDetails,
+  }) {
     return InkWell(
       onTap: controller.navigateToBookingDetails,
       child: Container(
@@ -69,14 +80,16 @@ class BookingsListView extends BaseView<BookingsListController> {
         child: Column(
           mainAxisSize: minMAS,
           children: [
-            Text('booking title'),
+            Text('booking title: ${bookingDetails.bookingTitle}'),
             8.height,
             Row(
               mainAxisAlignment: spaceBetweenMAA,
               children: [
-                Text('booking date'),
+                Text(
+                    ' start date: ${bookingDetails.startDate.day}/${bookingDetails.startDate.month}/${bookingDetails.startDate.year}'),
                 8.width,
-                Text('booking time'),
+                Text(
+                    ' end date: ${bookingDetails.endDate.day}/${bookingDetails.endDate.month}/${bookingDetails.endDate.year}'),
               ],
             ),
           ],

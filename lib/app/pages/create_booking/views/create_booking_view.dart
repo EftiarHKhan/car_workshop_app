@@ -1,6 +1,7 @@
 import 'package:car_workshop_app/app/core/base/base_controller.dart';
 import 'package:dropdown_flutter/custom_dropdown.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 import '/app/core/base/base_view.dart';
 import '/app/pages/create_booking/controllers/create_booking_controller.dart';
@@ -21,21 +22,23 @@ class CreateBookingView extends BaseView<CreateBookingController> {
     return Container(
       padding: const EdgeInsets.all(16),
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Text('CreateBookingView'),
-            16.height,
-            _buildCarDetails(),
-            16.height,
-            _buildCustomerDetails(),
-            16.height,
-            _buildBookingDetails(),
-            16.height,
-            _buildAssignMechanic(),
-            16.height,
-            _buildSubmitButton(),
-            16.height,
-          ],
+        child: Obx(
+          () => Column(
+            children: [
+              Text('CreateBookingView'),
+              16.height,
+              _buildCarDetails(),
+              16.height,
+              _buildCustomerDetails(),
+              16.height,
+              _buildBookingDetails(),
+              16.height,
+              _buildAssignMechanic(),
+              16.height,
+              _buildSubmitButton(),
+              16.height,
+            ],
+          ),
         ),
       ),
     );
@@ -133,7 +136,7 @@ class CreateBookingView extends BaseView<CreateBookingController> {
     );
   }
 
-  Widget _buildSubmitButton(){
+  Widget _buildSubmitButton() {
     return InkWell(
       onTap: controller.onTapSubmit,
       child: Container(
