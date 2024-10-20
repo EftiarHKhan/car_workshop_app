@@ -7,6 +7,7 @@ import 'package:nb_utils/nb_utils.dart';
 import '/app/core/base/base_controller.dart';
 
 class RegistrationController extends BaseController {
+  final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final role = ['Admin', 'Mechanic'].obs;
@@ -26,7 +27,7 @@ class RegistrationController extends BaseController {
   }
 
   Future<void> onTapRegister() async {
-    if (emailController.text.isEmpty || passwordController.text.isEmpty) {
+    if (!formKey.currentState!.validate()) {
       toast('Email and password are required');
       return;
     }

@@ -78,78 +78,85 @@ class RegistrationView extends BaseView<RegistrationController> {
   }
 
   Widget _buildForm() {
-    return Column(
-      crossAxisAlignment: startCAA,
-      children: [
-        TextWidget(
-          text: 'Email',
-          size: 14,
-          fontWeight: FontWeight.w400,
-        ),
-        4.height,
-        TextFormField(
-          controller: controller.emailController,
-          textInputAction: TextInputAction.next,
-          decoration: primaryInputDecoration(
-            hintText: 'example@gmail.com',
+    return Form(
+      key: controller.formKey,
+      child: Column(
+        crossAxisAlignment: startCAA,
+        children: [
+          TextWidget(
+            text: 'Email',
+            size: 14,
+            fontWeight: FontWeight.w400,
           ),
-        ),
-        16.height,
-        TextWidget(
-          text: 'Password',
-          size: 14,
-          fontWeight: FontWeight.w400,
-        ),
-        4.height,
-        TextFormField(
-          controller: controller.passwordController,
-          textInputAction: TextInputAction.done,
-          decoration: primaryInputDecoration(
-            hintText: 'example123',
+          4.height,
+          TextFormField(
+            controller: controller.emailController,
+            textInputAction: TextInputAction.next,
+            decoration: primaryInputDecoration(
+              hintText: 'example@gmail.com',
+            ),
+            validator: emailValidator,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
-        ),
-        16.height,
-        TextWidget(
-          text: 'Role',
-          size: 14,
-          fontWeight: FontWeight.w400,
-        ),
-        4.height,
-        DropdownFlutter<String>(
-          hintText: 'Select job role',
-          items: controller.role,
-          initialItem: controller.role[0],
-          onChanged: (value) {
-            controller.selectedRole.value = value!;
-          },
-          closedHeaderPadding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 16,
+          16.height,
+          TextWidget(
+            text: 'Password',
+            size: 14,
+            fontWeight: FontWeight.w400,
           ),
-          decoration: CustomDropdownDecoration(
-            closedBorderRadius: BorderRadius.circular(8),
-            closedFillColor: Colors.transparent,
-            closedBorder: Border.all(
-              color: const Color(0xFF8B05FA).withOpacity(0.1),
+          4.height,
+          TextFormField(
+            controller: controller.passwordController,
+            textInputAction: TextInputAction.done,
+            decoration: primaryInputDecoration(
+              hintText: 'example123',
             ),
-            listItemStyle: GoogleFonts.jost(
-              fontSize: 14,
-              color: Colors.black,
-              fontWeight: FontWeight.w400,
+            validator: requiredValidator,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+          ),
+          16.height,
+          TextWidget(
+            text: 'Role',
+            size: 14,
+            fontWeight: FontWeight.w400,
+          ),
+          4.height,
+          DropdownFlutter<String>(
+            hintText: 'Select job role',
+            items: controller.role,
+            initialItem: controller.role[0],
+            onChanged: (value) {
+              controller.selectedRole.value = value!;
+            },
+            closedHeaderPadding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 16,
             ),
-            hintStyle: GoogleFonts.jost(
-              fontSize: 14,
-              color: const Color(0xFF8B05FA),
-              fontWeight: FontWeight.w400,
-            ),
-            headerStyle: GoogleFonts.jost(
-              fontSize: 14,
-              color: Colors.black,
-              fontWeight: FontWeight.w400,
+            decoration: CustomDropdownDecoration(
+              closedBorderRadius: BorderRadius.circular(8),
+              closedFillColor: Colors.transparent,
+              closedBorder: Border.all(
+                color: const Color(0xFF8B05FA).withOpacity(0.1),
+              ),
+              listItemStyle: GoogleFonts.jost(
+                fontSize: 14,
+                color: Colors.black,
+                fontWeight: FontWeight.w400,
+              ),
+              hintStyle: GoogleFonts.jost(
+                fontSize: 14,
+                color: const Color(0xFF8B05FA),
+                fontWeight: FontWeight.w400,
+              ),
+              headerStyle: GoogleFonts.jost(
+                fontSize: 14,
+                color: Colors.black,
+                fontWeight: FontWeight.w400,
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
