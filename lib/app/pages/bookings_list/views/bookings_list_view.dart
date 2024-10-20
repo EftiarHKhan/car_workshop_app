@@ -120,7 +120,9 @@ class BookingsListView extends BaseView<BookingsListController> {
     required BookingDetails bookingDetails,
   }) {
     return GestureDetector(
-      onTap: controller.navigateToBookingDetails,
+      onTap: () => controller.navigateToBookingDetails(
+        bookingDetails: bookingDetails,
+      ),
       child: Container(
         padding: const EdgeInsets.all(12),
         margin: const EdgeInsets.symmetric(vertical: 4),

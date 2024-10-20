@@ -37,35 +37,46 @@ class BookingsListController extends BaseController {
 
   Future<void> fetchBookings() async {
     try {
-      if (role.value == 'Admin') {
-        final snapshot = await _firestore.collection('bookings').get();
-        if (snapshot.docs.isNotEmpty) {
-          bookingList.value = snapshot.docs
-              .map((doc) => BookingDetails.fromJson(doc.data()))
-              .toList();
-        }
-      } else {
-        final snapshot = await _firestore
-            .collection('bookings')
-            .where('mechanic',
-                isEqualTo: FirebaseAuth.instance.currentUser!.email)
-            .get();
-        if (snapshot.docs.isNotEmpty) {
-          bookingList.value = snapshot.docs
-              .map((doc) => BookingDetails.fromJson(doc.data()))
-              .toList();
-        }
-      }
+      await dataFetcher(
+        () async {
+          if (role.value == 'Admin') {
+            final snapshot = await _firestore.collection('bookings').get();
+            if (snapshot.docs.isNotEmpty) {
+              bookingList.value = snapshot.docs
+                  .map((doc) => BookingDetails.fromJson(doc.data()))
+                  .toList();
+            }
+          } else {
+            final snapshot = await _firestore
+                .collection('bookings')
+                .where('mechanic',
+                    isEqualTo: FirebaseAuth.instance.currentUser!.email)
+                .get();
+            if (snapshot.docs.isNotEmpty) {
+              bookingList.value = snapshot.docs
+                  .map((doc) => BookingDetails.fromJson(doc.data()))
+                  .toList();
+            }
+          }
+        },
+      );
     } catch (e, errorStackTrace) {
       // Handle any errors during the fetch process
       print('Error fetching bookings: $e');
       print('Error stack trace: $errorStackTrace');
-      toast('Error fetching bookings');
+      toast('Something went wrong');
     }
   }
 
-  void navigateToBookingDetails() {
-    Get.toNamed(Routes.bookingDetails);
+  void navigateToBookingDetails({
+    required BookingDetails bookingDetails,
+  }) {
+    Get.toNamed(
+      Routes.bookingDetails,
+      arguments: {
+        'bookingDetails': bookingDetails,
+      },
+    );
   }
 
   void navigateToCreateBooking() {
