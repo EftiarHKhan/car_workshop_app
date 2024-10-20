@@ -1,7 +1,12 @@
 import 'package:car_workshop_app/app/core/base/base_controller.dart';
+import 'package:car_workshop_app/app/core/values/app_colors.dart';
+import 'package:car_workshop_app/app/core/values/custom_functions.dart';
+import 'package:car_workshop_app/app/core/widget/button_component.dart';
+import 'package:car_workshop_app/app/core/widget/text_widget.dart';
 import 'package:dropdown_flutter/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:nb_utils/nb_utils.dart';
 import '/app/core/base/base_view.dart';
 import '/app/pages/create_booking/controllers/create_booking_controller.dart';
@@ -12,148 +17,429 @@ class CreateBookingView extends BaseView<CreateBookingController> {
 
   @override
   PreferredSizeWidget? appBar(BuildContext context) {
-    return AppBar(
-      title: Text('Create Booking'),
-    );
+    return null;
   }
 
   @override
   Widget body(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      child: SingleChildScrollView(
-        child: Obx(
-          () => Column(
-            children: [
-              Text('CreateBookingView'),
-              16.height,
-              _buildCarDetails(),
-              16.height,
-              _buildCustomerDetails(),
-              16.height,
-              _buildBookingDetails(),
-              16.height,
-              _buildAssignMechanic(),
-              16.height,
-              _buildSubmitButton(),
-              16.height,
-            ],
+    return Column(
+      children: [
+        _buildHeader(),
+        Expanded(
+          child: SingleChildScrollView(
+            child: Obx(
+              () => Form(
+                key: controller.formKey,
+                child: Column(
+                  children: [
+                    _buildCustomerDetails(),
+                    _buildCarDetails(),
+                    _buildBookingDetails(),
+                    _buildAssignMechanic(),
+                    _buildSubmitButton(),
+                  ],
+                ),
+              ),
+            ),
           ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildHeader() {
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.colorPrimary.withOpacity(.8),
+        borderRadius: const BorderRadius.only(
+          bottomLeft: Radius.circular(8),
+          bottomRight: Radius.circular(8),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 2,
+            offset: const Offset(0, 1),
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(
+          left: 16,
+          top: 14,
+          bottom: 14,
+        ),
+        child: Row(
+          mainAxisAlignment: startMAA,
+          children: [
+            InkWell(
+              onTap: Get.back,
+              child: const Icon(
+                Icons.arrow_back_ios,
+                color: Colors.white,
+              ),
+            ),
+            8.width,
+            TextWidget(
+              text: 'Create Booking',
+              size: 24,
+              fontWeight: FontWeight.w700,
+              textColor: Colors.white,
+            ),
+          ],
         ),
       ),
     );
   }
 
   Widget _buildCarDetails() {
-    return Column(
-      children: [
-        Text('Car Details'),
-        16.height,
-        TextFormField(
-          controller: controller.carMakeController,
-          decoration: const InputDecoration(
-            labelText: 'Car Make',
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: startCAA,
+        children: [
+          TextWidget(
+            text: 'Car Information',
+            size: 18,
+            fontWeight: FontWeight.w700,
+            textColor: Colors.black,
           ),
-        ),
-        TextFormField(
-          controller: controller.carModelController,
-          decoration: const InputDecoration(
-            labelText: 'Car Model',
+          8.height,
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 1,
+                  blurRadius: 2,
+                  offset: const Offset(0, 1),
+                ),
+              ],
+            ),
+            child: Column(
+              crossAxisAlignment: startCAA,
+              children: [
+                TextWidget(
+                  text: 'Car Make',
+                  size: 14,
+                  fontWeight: FontWeight.w400,
+                ),
+                4.height,
+                TextFormField(
+                  controller: controller.carMakeController,
+                  textInputAction: TextInputAction.next,
+                  decoration: primaryInputDecoration(
+                    hintText: 'e.g. BMW',
+                  ),
+                  validator: requiredValidator,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                ),
+                16.height,
+                TextWidget(
+                  text: 'Car Model',
+                  size: 14,
+                  fontWeight: FontWeight.w400,
+                ),
+                4.height,
+                TextFormField(
+                  controller: controller.carModelController,
+                  textInputAction: TextInputAction.next,
+                  decoration: primaryInputDecoration(
+                    hintText: 'e.g. 7 series',
+                  ),
+                  validator: requiredValidator,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                ),
+                16.height,
+                TextWidget(
+                  text: 'Manufacturing Year',
+                  size: 14,
+                  fontWeight: FontWeight.w400,
+                ),
+                4.height,
+                TextFormField(
+                  controller: controller.carYearController,
+                  textInputAction: TextInputAction.next,
+                  decoration: primaryInputDecoration(
+                    hintText: 'e.g. 2020',
+                  ),
+                  validator: requiredValidator,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                ),
+                16.height,
+                TextWidget(
+                  text: 'Registration Number',
+                  size: 14,
+                  fontWeight: FontWeight.w400,
+                ),
+                4.height,
+                TextFormField(
+                  controller: controller.carRegistrationPlateController,
+                  textInputAction: TextInputAction.next,
+                  decoration: primaryInputDecoration(
+                    hintText: 'e.g. ABC123',
+                  ),
+                  validator: requiredValidator,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                ),
+              ],
+            ),
           ),
-        ),
-        TextFormField(
-          controller: controller.carYearController,
-          decoration: const InputDecoration(
-            labelText: 'Car Year',
-          ),
-        ),
-        TextFormField(
-          controller: controller.carRegistrationPlateController,
-          decoration: const InputDecoration(
-            labelText: 'Car Registration Plate',
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
   Widget _buildCustomerDetails() {
-    return Column(
-      children: [
-        Text('Customer Details'),
-        16.height,
-        TextFormField(
-          controller: controller.customerNameController,
-          decoration: const InputDecoration(
-            labelText: 'Customer Name',
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: startCAA,
+        children: [
+          TextWidget(
+            text: 'Customer Information',
+            size: 18,
+            fontWeight: FontWeight.w700,
+            textColor: Colors.black,
           ),
-        ),
-        TextFormField(
-          controller: controller.customerEmailController,
-          decoration: const InputDecoration(
-            labelText: 'Customer Email',
+          8.height,
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 1,
+                  blurRadius: 2,
+                  offset: const Offset(0, 1),
+                ),
+              ],
+            ),
+            child: Column(
+              crossAxisAlignment: startCAA,
+              children: [
+                TextWidget(
+                  text: 'Name',
+                  size: 14,
+                  fontWeight: FontWeight.w400,
+                ),
+                4.height,
+                TextFormField(
+                  controller: controller.customerNameController,
+                  textInputAction: TextInputAction.next,
+                  decoration: primaryInputDecoration(
+                    hintText: 'e.g. John',
+                  ),
+                  validator: requiredValidator,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                ),
+                16.height,
+                TextWidget(
+                  text: 'Email',
+                  size: 14,
+                  fontWeight: FontWeight.w400,
+                ),
+                4.height,
+                TextFormField(
+                  controller: controller.customerEmailController,
+                  textInputAction: TextInputAction.next,
+                  decoration: primaryInputDecoration(
+                    hintText: 'e.g. example@gmail.com',
+                  ),
+                  validator: requiredValidator,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                ),
+                16.height,
+                TextWidget(
+                  text: 'Phone Number',
+                  size: 14,
+                  fontWeight: FontWeight.w400,
+                ),
+                4.height,
+                TextFormField(
+                  controller: controller.customerPhoneController,
+                  textInputAction: TextInputAction.next,
+                  decoration: primaryInputDecoration(
+                    hintText: 'e.g. 01799605520',
+                  ),
+                  validator: requiredValidator,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                ),
+              ],
+            ),
           ),
-        ),
-        TextFormField(
-          controller: controller.customerPhoneController,
-          decoration: const InputDecoration(
-            labelText: 'Customer Phone',
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
   Widget _buildBookingDetails() {
-    return Column(
-      children: [
-        Text('Booking Details'),
-        16.height,
-        TextFormField(
-          controller: controller.bookingTitleController,
-          decoration: const InputDecoration(
-            labelText: 'Booking Title',
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: startCAA,
+        children: [
+          TextWidget(
+            text: 'Booking Information',
+            size: 18,
+            fontWeight: FontWeight.w700,
+            textColor: Colors.black,
           ),
-        ),
-      ],
+          8.height,
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 1,
+                  blurRadius: 2,
+                  offset: const Offset(0, 1),
+                ),
+              ],
+            ),
+            child: Column(
+              crossAxisAlignment: startCAA,
+              children: [
+                TextWidget(
+                  text: 'Booking Title',
+                  size: 14,
+                  fontWeight: FontWeight.w400,
+                ),
+                4.height,
+                TextFormField(
+                  controller: controller.bookingTitleController,
+                  textInputAction: TextInputAction.next,
+                  decoration: primaryInputDecoration(
+                    hintText: 'e.g. service name',
+                  ),
+                  validator: requiredValidator,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                ),
+                16.height,
+                TextWidget(
+                  text: 'Start Date',
+                  size: 14,
+                  fontWeight: FontWeight.w400,
+                ),
+                4.height,
+                TextFormField(
+                  controller: controller.customerEmailController,
+                  textInputAction: TextInputAction.next,
+                  decoration: primaryInputDecoration(
+                    hintText: 'e.g. 2024-10-24',
+                  ),
+                  validator: requiredValidator,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                ),
+                16.height,
+                TextWidget(
+                  text: 'End Date',
+                  size: 14,
+                  fontWeight: FontWeight.w400,
+                ),
+                4.height,
+                TextFormField(
+                  controller: controller.customerPhoneController,
+                  textInputAction: TextInputAction.next,
+                  decoration: primaryInputDecoration(
+                    hintText: 'e.g. 2024-10-28',
+                  ),
+                  validator: requiredValidator,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
   Widget _buildAssignMechanic() {
-    return Column(
-      children: [
-        Text('Assign Mechanic'),
-        16.height,
-        DropdownFlutter<String>(
-          hintText: 'Select Mechanic',
-          items: controller.mechanicList.value,
-          initialItem: controller.mechanicList.value![0],
-          onChanged: (value) {
-            controller.selectedMechanic.value = value!;
-          },
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: startCAA,
+        children: [
+          TextWidget(
+            text: 'Assign Mechanic',
+            size: 18,
+            fontWeight: FontWeight.w700,
+            textColor: Colors.black,
+          ),
+          16.height,
+          TextWidget(
+            text: 'Role',
+            size: 14,
+            fontWeight: FontWeight.w400,
+          ),
+          4.height,
+          DropdownFlutter<String>(
+            hintText: 'Select Mechanic',
+            items: controller.mechanicList.value,
+            initialItem: controller.mechanicList.value![0],
+            onChanged: (value) {
+              controller.selectedMechanic.value = value!;
+            },
+            closedHeaderPadding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 16,
+            ),
+            decoration: CustomDropdownDecoration(
+              closedBorderRadius: BorderRadius.circular(8),
+              closedFillColor: Colors.transparent,
+              closedBorder: Border.all(
+                color: const Color(0xFF8B05FA).withOpacity(0.1),
+              ),
+              listItemStyle: GoogleFonts.jost(
+                fontSize: 14,
+                color: Colors.black,
+                fontWeight: FontWeight.w400,
+              ),
+              hintStyle: GoogleFonts.jost(
+                fontSize: 14,
+                color: const Color(0xFF8B05FA),
+                fontWeight: FontWeight.w400,
+              ),
+              headerStyle: GoogleFonts.jost(
+                fontSize: 14,
+                color: Colors.black,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
   Widget _buildSubmitButton() {
-    return InkWell(
-      onTap: controller.onTapSubmit,
-      child: Container(
-        padding: const EdgeInsets.symmetric(
-          vertical: 16,
-          horizontal: 32,
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: ButtonComponent(
+        text: 'Submit',
+        activeOutline: false,
+        textSize: 16,
+        fontWeight: FontWeight.w400,
+        buttonWidth: Get.width,
+        contentPaddingHorizontal: 10,
+        buttonBorderRadius: 6,
+        gradient: const LinearGradient(
+          colors: [
+            Color(0xFF0066B3),
+            Color(0xFF92D6E3),
+          ],
         ),
-        decoration: BoxDecoration(
-          color: Colors.blue,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: const Text(
-          'Submit',
-          style: TextStyle(
-            color: Colors.white,
-          ),
-        ),
+        ontap: controller.onTapSubmit,
       ),
     );
   }

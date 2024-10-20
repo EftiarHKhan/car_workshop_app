@@ -1,9 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nb_utils/nb_utils.dart';
 import '/app/core/base/base_controller.dart';
 
 class CreateBookingController extends BaseController {
+  final formKey = GlobalKey<FormState>();
+
   final carMakeController = TextEditingController();
   final carModelController = TextEditingController();
   final carYearController = TextEditingController();
@@ -30,7 +33,11 @@ class CreateBookingController extends BaseController {
   Future<void> onTapSubmit() async {
     // Submit booking logic here
 
-    dummyFunction();
+    if (checkFormValidation() == false) {
+      return;
+    }
+
+    /*dummyFunction();
 
     // save booking to Firestore
     await _firestore.collection('bookings').add(
@@ -48,7 +55,15 @@ class CreateBookingController extends BaseController {
         'mechanic': selectedMechanic.value,
         'createdAt': FieldValue.serverTimestamp(),
       },
-    );
+    );*/
+  }
+
+  bool checkFormValidation() {
+    if (formKey.currentState!.validate()) {
+      return true;
+    }
+
+    return false;
   }
 
   void dummyFunction() {

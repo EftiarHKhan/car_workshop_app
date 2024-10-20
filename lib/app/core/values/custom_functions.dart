@@ -72,7 +72,7 @@ InputDecoration primaryInputDecoration({
     errorBorder: enabledBorder == true
         ? OutlineInputBorder(
             borderSide: BorderSide(
-              color: borderColor ?? const Color(0xFFEBF0FF),
+              color: borderColor ?? Colors.red.withOpacity(0.4),
             ),
             borderRadius: BorderRadius.circular(containerBorderRadius),
           )
@@ -84,7 +84,7 @@ InputDecoration primaryInputDecoration({
     focusedErrorBorder: enabledBorder == true
         ? OutlineInputBorder(
             borderSide: BorderSide(
-              color: borderColor ?? const Color(0xFF8B05FA).withOpacity(0.1),
+              color: borderColor ?? Colors.red.withOpacity(0.4),
             ),
             borderRadius: BorderRadius.circular(containerBorderRadius),
           )
