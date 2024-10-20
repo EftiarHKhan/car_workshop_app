@@ -75,37 +75,44 @@ class LoginView extends BaseView<LoginController> {
   }
 
   Widget _buildForm() {
-    return Column(
-      crossAxisAlignment: startCAA,
-      children: [
-        TextWidget(
-          text: 'Email',
-          size: 14,
-          fontWeight: FontWeight.w400,
-        ),
-        4.height,
-        TextFormField(
-          controller: controller.emailController,
-          textInputAction: TextInputAction.next,
-          decoration: primaryInputDecoration(
-            hintText: 'example@gmail.com',
+    return Form(
+      key: controller.formKey,
+      child: Column(
+        crossAxisAlignment: startCAA,
+        children: [
+          TextWidget(
+            text: 'Email',
+            size: 14,
+            fontWeight: FontWeight.w400,
           ),
-        ),
-        16.height,
-        TextWidget(
-          text: 'Password',
-          size: 14,
-          fontWeight: FontWeight.w400,
-        ),
-        4.height,
-        TextFormField(
-          controller: controller.passwordController,
-          textInputAction: TextInputAction.done,
-          decoration: primaryInputDecoration(
-            hintText: 'example123',
+          4.height,
+          TextFormField(
+            controller: controller.emailController,
+            textInputAction: TextInputAction.next,
+            decoration: primaryInputDecoration(
+              hintText: 'example@gmail.com',
+            ),
+            validator: emailValidator,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
-        ),
-      ],
+          16.height,
+          TextWidget(
+            text: 'Password',
+            size: 14,
+            fontWeight: FontWeight.w400,
+          ),
+          4.height,
+          TextFormField(
+            controller: controller.passwordController,
+            textInputAction: TextInputAction.done,
+            decoration: primaryInputDecoration(
+              hintText: 'example123',
+            ),
+            validator: requiredValidator,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+          ),
+        ],
+      ),
     );
   }
 
