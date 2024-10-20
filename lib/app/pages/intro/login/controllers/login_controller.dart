@@ -31,34 +31,35 @@ class LoginController extends BaseController {
       return;
     }
 
+    String role = '';
+
     try {
-      // Sign in with email and password
-      UserCredential userCredential = await auth.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
+      await dataFetcher(
+        () async {
+          // Sign in with email and password
+          UserCredential userCredential = await auth.signInWithEmailAndPassword(
+            email: emailController.text.trim(),
+            password: passwordController.text.trim(),
+          );
+
+          // Fetch user role from Firestore
+          DocumentSnapshot userSnapshot = await _firestore
+              .collection('users')
+              .doc(userCredential.user!.uid)
+              .get();
+
+          role = userSnapshot.get('role');
+        },
       );
 
-      // Fetch user role from Firestore
-      DocumentSnapshot userSnapshot = await _firestore
-          .collection('users')
-          .doc(userCredential.user!.uid)
-          .get();
-
-      String role = userSnapshot.get('role');
       toast('Login successful');
 
-      Get.toNamed(Routes.bookingsList, arguments: {
-        'role': role,
-      });
-
-      // Navigate to different dashboards based on role
-      if (role == 'Admin') {
-        // Navigate to admin dashboard
-        print('user is admin');
-      } else if (role == 'Mechanic') {
-        // Navigate to mechanic dashboard
-        print('user is mechanic');
-      }
+      Get.toNamed(
+        Routes.bookingsList,
+        arguments: {
+          'role': role,
+        },
+      );
     } catch (e) {
       toast('Invalid email or password');
     }

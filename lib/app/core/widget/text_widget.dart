@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TextWidget extends StatelessWidget {
-
   String text;
   TextAlign? textAlign;
   Color? textColor;
@@ -12,8 +12,10 @@ class TextWidget extends StatelessWidget {
   TextDecoration? textDecoration;
   String? fontFamily;
   double? height;
+  bool? customStyle;
 
-  TextWidget({super.key,
+  TextWidget({
+    super.key,
     required this.text,
     this.textAlign,
     this.textColor,
@@ -24,11 +26,12 @@ class TextWidget extends StatelessWidget {
     this.textDecoration,
     this.fontFamily,
     this.height,
+    this.customStyle,
   });
 
   @override
   Widget build(BuildContext context) {
-    if(text.startsWith('<p>') && text.endsWith('</p>')) {
+    if (text.startsWith('<p>') && text.endsWith('</p>')) {
       text = text.replaceAll('<p>', '');
       text = text.replaceAll('</p>', '');
     }
@@ -37,16 +40,23 @@ class TextWidget extends StatelessWidget {
       textScaleFactor: 1,
       textAlign: textAlign,
       maxLines: maxLine,
-      style: TextStyle(
-        color: textColor ?? Colors.black,
-        fontSize: size,
-        fontWeight: fontWeight,
-        overflow: textOverflow,
-        decoration: textDecoration,
-        fontFamily: fontFamily ?? 'Poppins',
-        height: height,
-        letterSpacing: 0,
-      ),
+      style: customStyle == true
+          ? TextStyle(
+              color: textColor ?? Colors.black,
+              fontSize: size,
+              fontWeight: fontWeight,
+              overflow: textOverflow,
+              decoration: textDecoration,
+              fontFamily: fontFamily ?? 'Poppins',
+              height: height,
+              letterSpacing: 0,
+            )
+          : GoogleFonts.jost(
+              fontSize: size,
+              color: textColor ?? Colors.black,
+              fontWeight: fontWeight,
+              height: height,
+            ),
     );
   }
 }

@@ -12,7 +12,7 @@ abstract class AppColors {
 
   static const Color centerTextColor = Colors.grey;
   static const MaterialColor colorPrimarySwatch = Colors.cyan;
-  static const Color colorPrimary = Color(0xFF38686A);
+  static const Color colorPrimary = Color(0xFF0066B3);
   static const Color colorAccent = Color(0xFF38686A);
   static const Color colorLightGreen = Color(0xFF00EFA7);
   static const Color colorWhite = Color(0xFFFFFFFF);
