@@ -4,6 +4,7 @@ import '/app/core/base/base_controller.dart';
 
 class BookingDetailsController extends BaseController {
   final bookingDetails = Rx<BookingDetails?>(null);
+  final markedAsComplete = false.obs;
 
   @override
   Future<void> onInit() async {

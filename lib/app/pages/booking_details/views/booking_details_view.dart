@@ -40,20 +40,25 @@ class BookingDetailsView extends BaseView<BookingDetailsController> {
   }
 
   Widget _buildBody() {
-    return Column(
-      children: [
-        _buildHeader(),
-        16.height,
-        Column(
-          children: [
-            _buildAssignedMechanic(),
-            _buildBookingInfo(),
-            _buildCarInfo(),
-            //_buildCarInfo(),
-            _buildCustomerInfo(),
-          ],
-        )
-      ],
+    return Obx(
+      () => Column(
+        children: [
+          _buildHeader(),
+          16.height,
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  _buildAssignedMechanic(),
+                  _buildBookingInfo(),
+                  _buildCarInfo(),
+                  _buildCustomerInfo(),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 
@@ -86,25 +91,48 @@ class BookingDetailsView extends BaseView<BookingDetailsController> {
       child: Padding(
         padding: const EdgeInsets.only(
           left: 16,
-          top: 16,
-          bottom: 16,
+          top: 8,
+          bottom: 8,
         ),
         child: Row(
-          mainAxisAlignment: startMAA,
+          mainAxisAlignment: spaceBetweenMAA,
           children: [
-            InkWell(
-              onTap: Get.back,
-              child: const Icon(
-                Icons.arrow_back_ios,
+            Row(
+              mainAxisAlignment: startMAA,
+              children: [
+                InkWell(
+                  onTap: Get.back,
+                  child: const Icon(
+                    Icons.arrow_back_ios,
+                    color: Colors.white,
+                  ),
+                ),
+                8.width,
+                TextWidget(
+                  text: 'Booking Details',
+                  size: 24,
+                  fontWeight: FontWeight.w700,
+                  textColor: Colors.white,
+                ),
+              ],
+            ),
+            IconButton(
+              onPressed: () {
+                controller.markedAsComplete.value =
+                    !controller.markedAsComplete.value;
+                toast(
+                  controller.markedAsComplete.value
+                      ? 'Marked as Complete'
+                      : 'Marked as Pending',
+                );
+              },
+              icon: Icon(
+                controller.markedAsComplete.value
+                    ? Icons.mark_chat_unread_outlined
+                    : Icons.check_circle_outline,
+                size: 24,
                 color: Colors.white,
               ),
-            ),
-            8.width,
-            TextWidget(
-              text: 'Booking Details',
-              size: 24,
-              fontWeight: FontWeight.w700,
-              textColor: Colors.white,
             ),
           ],
         ),
@@ -213,7 +241,9 @@ class BookingDetailsView extends BaseView<BookingDetailsController> {
                       textColor: Colors.black,
                     ),
                     TextWidget(
-                      text: 'Pending',
+                      text: controller.markedAsComplete.value
+                          ? 'Complete'
+                          : 'Pending',
                       size: 16,
                       fontWeight: FontWeight.w500,
                       textColor: Colors.black,

@@ -24,9 +24,9 @@ class BookingsListView extends BaseView<BookingsListController> {
           return Column(
             children: [
               _buildHeader(),
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: Expanded(
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
                   child: _buildBookingList(),
                 ),
               ),
