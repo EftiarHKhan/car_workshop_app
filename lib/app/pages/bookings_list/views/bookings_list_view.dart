@@ -1,4 +1,5 @@
 import 'package:car_workshop_app/app/core/base/base_controller.dart';
+import 'package:car_workshop_app/app/core/widget/text_widget.dart';
 import 'package:car_workshop_app/app/model/booking_details.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,24 +23,50 @@ class BookingsListView extends BaseView<BookingsListController> {
         () {
           return Column(
             children: [
-              Row(
-                mainAxisAlignment: spaceBetweenMAA,
-                children: [
-                  Text('BookingsListView'),
-                  8.width,
-                  TextButton(
-                    onPressed: controller.logout,
-                    child: Text('Logout'),
-                  ),
-                ],
-              ),
-              16.height,
-              Expanded(
-                child: _buildBookingList(),
+              8.height,
+              _buildHeader(),
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Expanded(
+                  child: _buildBookingList(),
+                ),
               ),
             ],
           );
         },
+      ),
+    );
+  }
+
+  Widget _buildHeader() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 16),
+      child: Row(
+        mainAxisAlignment: spaceBetweenMAA,
+        children: [
+          TextWidget(
+            text: 'Booking List',
+            size: 24,
+            fontWeight: FontWeight.w700,
+          ),
+          8.width,
+          TextButton(
+            onPressed: controller.logout,
+            style: ButtonStyle(
+              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50),
+                ),
+              ),
+            ),
+            iconAlignment: IconAlignment.end,
+            child: const Icon(
+              Icons.logout,
+              size: 20,
+              color: Colors.red,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -64,7 +91,7 @@ class BookingsListView extends BaseView<BookingsListController> {
       onTap: controller.navigateToBookingDetails,
       child: Container(
         padding: const EdgeInsets.all(8),
-        margin: const EdgeInsets.all(8),
+        margin: const EdgeInsets.symmetric(vertical: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           color: Colors.white,
