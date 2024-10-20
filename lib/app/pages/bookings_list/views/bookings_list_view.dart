@@ -1,4 +1,4 @@
-import 'package:car_workshop_app/app/core/base/base_controller.dart';
+import 'package:car_workshop_app/app/core/values/app_colors.dart';
 import 'package:car_workshop_app/app/core/widget/text_widget.dart';
 import 'package:car_workshop_app/app/model/booking_details.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +23,6 @@ class BookingsListView extends BaseView<BookingsListController> {
         () {
           return Column(
             children: [
-              8.height,
               _buildHeader(),
               Padding(
                 padding: const EdgeInsets.all(16),
@@ -39,34 +38,67 @@ class BookingsListView extends BaseView<BookingsListController> {
   }
 
   Widget _buildHeader() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 16),
-      child: Row(
-        mainAxisAlignment: spaceBetweenMAA,
-        children: [
-          TextWidget(
-            text: 'Booking List',
-            size: 24,
-            fontWeight: FontWeight.w700,
-          ),
-          8.width,
-          TextButton(
-            onPressed: controller.logout,
-            style: ButtonStyle(
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50),
-                ),
-              ),
-            ),
-            iconAlignment: IconAlignment.end,
-            child: const Icon(
-              Icons.logout,
-              size: 20,
-              color: Colors.red,
-            ),
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.colorPrimary.withOpacity(.8),
+        borderRadius: const BorderRadius.only(
+          bottomLeft: Radius.circular(8),
+          bottomRight: Radius.circular(8),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 2,
+            offset: Offset(0, 1),
           ),
         ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(
+          left: 16,
+          top: 8,
+          bottom: 8,
+        ),
+        child: Row(
+          mainAxisAlignment: spaceBetweenMAA,
+          children: [
+            TextWidget(
+              text: 'Booking List',
+              size: 24,
+              fontWeight: FontWeight.w700,
+              textColor: Colors.white,
+            ),
+            8.width,
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.filter_alt_sharp,
+                    size: 24,
+                    color: Colors.white,
+                  ),
+                ),
+                IconButton(
+                  onPressed: controller.logout,
+                  style: ButtonStyle(
+                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                    ),
+                    iconColor: WidgetStateProperty.all<Color>(Colors.white),
+                  ),
+                  iconSize: 24,
+                  icon: const Icon(
+                    Icons.logout,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -87,11 +119,11 @@ class BookingsListView extends BaseView<BookingsListController> {
   Widget _buildCardView({
     required BookingDetails bookingDetails,
   }) {
-    return InkWell(
+    return GestureDetector(
       onTap: controller.navigateToBookingDetails,
       child: Container(
-        padding: const EdgeInsets.all(8),
-        margin: const EdgeInsets.symmetric(vertical: 8),
+        padding: const EdgeInsets.all(12),
+        margin: const EdgeInsets.symmetric(vertical: 4),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           color: Colors.white,
@@ -106,17 +138,61 @@ class BookingsListView extends BaseView<BookingsListController> {
         ),
         child: Column(
           mainAxisSize: minMAS,
+          crossAxisAlignment: startCAA,
           children: [
-            Text('booking title: ${bookingDetails.bookingTitle}'),
+            TextWidget(
+              text: '# ${bookingDetails.bookingTitle}',
+              size: 18,
+              fontWeight: FontWeight.w600,
+            ),
+            8.height,
+            Row(
+              children: [
+                const Icon(
+                  Icons.car_crash,
+                  size: 20,
+                ),
+                4.width,
+                TextWidget(
+                  text:
+                      '${bookingDetails.carMake} - ${bookingDetails.carModel} - ${bookingDetails.carYear}',
+                  size: 14,
+                  fontWeight: FontWeight.w400,
+                ),
+              ],
+            ),
+            8.height,
+            Row(
+              children: [
+                const Icon(
+                  Icons.person_add_alt_1,
+                  size: 20,
+                ),
+                4.width,
+                TextWidget(
+                  text: '${bookingDetails.mechanic}',
+                  size: 14,
+                  fontWeight: FontWeight.w400,
+                ),
+              ],
+            ),
             8.height,
             Row(
               mainAxisAlignment: spaceBetweenMAA,
               children: [
-                Text(
-                    ' start date: ${bookingDetails.startDate.day}/${bookingDetails.startDate.month}/${bookingDetails.startDate.year}'),
+                TextWidget(
+                  text:
+                      'Start date: ${bookingDetails.startDate.day}/${bookingDetails.startDate.month}/${bookingDetails.startDate.year}',
+                  size: 14,
+                  fontWeight: FontWeight.w500,
+                ),
                 8.width,
-                Text(
-                    ' end date: ${bookingDetails.endDate.day}/${bookingDetails.endDate.month}/${bookingDetails.endDate.year}'),
+                TextWidget(
+                  text:
+                      'End date: ${bookingDetails.endDate.day}/${bookingDetails.endDate.month}/${bookingDetails.endDate.year}',
+                  size: 14,
+                  fontWeight: FontWeight.w500,
+                ),
               ],
             ),
           ],
@@ -129,9 +205,25 @@ class BookingsListView extends BaseView<BookingsListController> {
   Widget? floatingActionButton() {
     if (controller.role.value == 'Mechanic') return null;
 
-    return FloatingActionButton(
+    return TextButton(
       onPressed: controller.navigateToCreateBooking,
-      child: Icon(Icons.add),
+      style: ButtonStyle(
+        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        backgroundColor: WidgetStateProperty.all<Color>(AppColors.colorPrimary),
+        padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
+          const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        ),
+      ),
+      child: TextWidget(
+        text: 'Create Booking',
+        size: 14,
+        fontWeight: FontWeight.w600,
+        textColor: Colors.white,
+      ),
     );
   }
 
