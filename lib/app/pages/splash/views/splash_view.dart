@@ -1,3 +1,5 @@
+import 'package:car_workshop_app/app/core/widget/asset_image_view.dart';
+import 'package:car_workshop_app/app/core/widget/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -22,9 +24,27 @@ class SplashView extends BaseView<SplashController> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            'Car Workshop',
-            style: boldTextStyle(size: 20),
+          const AssetImageView(
+            fileName: 'im_logo.png',
+            width: 200,
+          ),
+          Row(
+            mainAxisAlignment: centerMAA,
+            crossAxisAlignment: startCAA,
+            children: [
+              TextWidget(
+                text: 'ICHIBAN',
+                size: 24,
+                fontWeight: FontWeight.bold,
+                textColor: const Color(0xFFD71E23),
+              ),
+              TextWidget(
+                text: 'AUTO',
+                size: 24,
+                fontWeight: FontWeight.bold,
+                textColor: const Color(0xFF7D8282),
+              ),
+            ],
           ),
         ],
       ),
