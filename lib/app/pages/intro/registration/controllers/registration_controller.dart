@@ -32,21 +32,29 @@ class RegistrationController extends BaseController {
     }
 
     try {
-      // Register with email and password
-      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
+      await dataFetcher(
+        () async {
+          // Register with email and password
+          UserCredential userCredential =
+              await auth.createUserWithEmailAndPassword(
+            email: emailController.text.trim(),
+            password: passwordController.text.trim(),
+          );
 
-      // Save user role in Firestore
-      await _firestore.collection('users').doc(userCredential.user!.uid).set(
-        {
-          'email': emailController.text.trim(),
-          'role': selectedRole.value,
+          // Save user role in Firestore
+          await _firestore
+              .collection('users')
+              .doc(userCredential.user!.uid)
+              .set(
+            {
+              'email': emailController.text.trim(),
+              'role': selectedRole.value,
+            },
+          );
         },
       );
-
       toast('Registration successful');
+      Get.offAndToNamed(Routes.login);
     } catch (e) {
       toast(e.toString());
     }
