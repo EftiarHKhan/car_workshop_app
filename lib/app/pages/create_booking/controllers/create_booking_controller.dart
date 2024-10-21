@@ -46,6 +46,9 @@ class CreateBookingController extends BaseController {
               .map((e) => e['email'])
               .cast<String>()
               .toList();
+          if (mechanicList.value!.isNotEmpty) {
+            selectedMechanic.value = mechanicList.value!.first;
+          }
         },
       );
     } catch (e) {
@@ -94,6 +97,10 @@ class CreateBookingController extends BaseController {
 
   bool checkFormValidation() {
     if (formKey.currentState!.validate()) {
+      if (startDateController.text.isEmpty || endDateController.text.isEmpty) {
+        toast('Please select start and end date');
+        return false;
+      }
       return true;
     }
 
