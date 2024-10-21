@@ -2,14 +2,18 @@ import 'package:car_workshop_app/app/model/booking_details.dart';
 import 'package:car_workshop_app/app/routes/app_pages.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 import '/app/core/base/base_controller.dart';
 
 class BookingsListController extends BaseController {
   final role = ''.obs;
-  //final userEmail = FirebaseAuth.instance.currentUser!.email;
   final bookingList = Rx<List<BookingDetails>?>(null);
+  final filteredBookingList = Rx<List<BookingDetails>?>(null);
+
+  final startDateController = TextEditingController();
+  final endDateController = TextEditingController();
 
   // Firebase Auth and Firestore instances
   final FirebaseAuth auth = FirebaseAuth.instance;
@@ -21,6 +25,23 @@ class BookingsListController extends BaseController {
     final args = Get.arguments;
     role.value = args['role'];
     await fetchBookings();
+  }
+
+  void filterBookingsByDate({
+    required DateTime startDate,
+    required DateTime endDate,
+  }) {
+    filteredBookingList.value = bookingList.value!
+        .where(
+          (booking) =>
+              booking.startDate.isAfter(startDate) &&
+              booking.endDate.isBefore(endDate),
+        )
+        .toList();
+    startDateController.clear();
+    endDateController.clear();
+    filteredBookingList.refresh();
+    Get.back();
   }
 
   Future<void> logout() async {
@@ -58,6 +79,7 @@ class BookingsListController extends BaseController {
                   .toList();
             }
           }
+          filteredBookingList.value = bookingList.value;
         },
       );
     } catch (e, errorStackTrace) {

@@ -1,11 +1,15 @@
 import 'package:car_workshop_app/app/core/values/app_colors.dart';
+import 'package:car_workshop_app/app/core/widget/button_component.dart';
+import 'package:car_workshop_app/app/core/widget/custom_date_picker.dart';
 import 'package:car_workshop_app/app/core/widget/text_widget.dart';
 import 'package:car_workshop_app/app/model/booking_details.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:nb_utils/nb_utils.dart';
 import '/app/core/base/base_view.dart';
 import '/app/pages/bookings_list/controllers/bookings_list_controller.dart';
+import 'package:intl/intl.dart';
 
 //ignore: must_be_immutable
 class BookingsListView extends BaseView<BookingsListController> {
@@ -72,8 +76,21 @@ class BookingsListView extends BaseView<BookingsListController> {
             8.width,
             Row(
               children: [
+                TextButton(
+                  onPressed: () {
+                    controller.fetchBookings();
+                  },
+                  child: TextWidget(
+                    text: 'All',
+                    size: 14,
+                    fontWeight: FontWeight.w600,
+                    textColor: Colors.white,
+                  ),
+                ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showFilterModal();
+                  },
                   icon: const Icon(
                     Icons.filter_alt_sharp,
                     size: 24,
@@ -103,12 +120,106 @@ class BookingsListView extends BaseView<BookingsListController> {
     );
   }
 
+  void showFilterModal() {
+    Get.defaultDialog(
+      radius: 8,
+      contentPadding: const EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 0,
+      ),
+      titlePadding: const EdgeInsets.only(
+        top: 16,
+      ),
+      titleStyle: GoogleFonts.jost(
+        fontSize: 18,
+        fontWeight: FontWeight.w600,
+      ),
+      title: 'Filter Bookings',
+      content: Column(
+        children: [
+          8.height,
+          TextWidget(
+            text: 'Select start date & end date to filter bookings',
+            size: 14,
+            fontWeight: FontWeight.w400,
+            textAlign: TextAlign.center,
+            textColor: Colors.grey,
+          ),
+          20.height,
+          Column(
+            crossAxisAlignment: startCAA,
+            children: [
+              TextWidget(
+                text: 'Start Date',
+                size: 14,
+                fontWeight: FontWeight.w400,
+              ),
+              4.height,
+              CustomDatePicker(
+                selectedDate: controller.startDateController.text,
+                hint: controller.startDateController.text.isNotEmpty
+                    ? controller.startDateController.text
+                    : 'Select date',
+                isRequired: false,
+                errorText: 'Field is required',
+                enabledBorder: true,
+                contentPadding: const EdgeInsets.only(
+                  left: 10,
+                  right: 10,
+                ),
+                onChangedDate: (value) {
+                  controller.startDateController.text = value ?? '';
+                },
+              ),
+              16.height,
+              TextWidget(
+                text: 'End Date',
+                size: 14,
+                fontWeight: FontWeight.w400,
+              ),
+              4.height,
+              CustomDatePicker(
+                selectedDate: controller.endDateController.text,
+                hint: controller.endDateController.text.isNotEmpty
+                    ? controller.endDateController.text
+                    : 'Select date',
+                isRequired: false,
+                errorText: 'Field is required',
+                enabledBorder: true,
+                contentPadding: const EdgeInsets.only(
+                  left: 10,
+                  right: 10,
+                ),
+                onChangedDate: (value) {
+                  controller.endDateController.text = value ?? '';
+                },
+              ),
+            ],
+          ),
+          16.height,
+          ButtonComponent(
+            text: 'Filter',
+            buttonColor: AppColors.colorPrimary,
+            ontap: () => controller.filterBookingsByDate(
+              startDate: controller.startDateController.text.isNotEmpty
+                  ? DateTime.parse(controller.startDateController.text)
+                  : DateTime.now(),
+              endDate: controller.endDateController.text.isNotEmpty
+                  ? DateTime.parse(controller.endDateController.text)
+                  : DateTime.now(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildBookingList() {
     return ListView.builder(
-      itemCount: controller.bookingList.value?.length ?? 0,
+      itemCount: controller.filteredBookingList.value?.length ?? 0,
       shrinkWrap: true,
       itemBuilder: (context, index) {
-        final bookingDetails = controller.bookingList.value![index];
+        final bookingDetails = controller.filteredBookingList.value![index];
         return _buildCardView(
           bookingDetails: bookingDetails,
         );
