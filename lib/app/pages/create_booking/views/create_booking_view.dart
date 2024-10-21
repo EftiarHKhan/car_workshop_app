@@ -378,7 +378,7 @@ class CreateBookingView extends BaseView<CreateBookingController> {
           ),
           16.height,
           TextWidget(
-            text: 'Role',
+            text: 'Select Mechanic',
             size: 14,
             fontWeight: FontWeight.w400,
           ),
@@ -387,6 +387,7 @@ class CreateBookingView extends BaseView<CreateBookingController> {
             hintText: 'Select Mechanic',
             items: controller.mechanicList.value,
             initialItem: controller.mechanicList.value![0],
+            validator: requiredValidator,
             onChanged: (value) {
               controller.selectedMechanic.value = value!;
             },

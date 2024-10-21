@@ -27,7 +27,30 @@ class CreateBookingController extends BaseController {
   @override
   Future<void> onInit() async {
     super.onInit();
-    mechanicList.value = ['John Doe', 'Jane Doe', 'John Smith'];
+    await fetchingMechanics();
+  }
+
+  Future<void> fetchingMechanics() async {
+    try {
+      await dataFetcher(
+        () async {
+          final snapshot = await _firestore.collection('users').get();
+          var response = <Map<String, dynamic>>[];
+          if (snapshot.docs.isNotEmpty) {
+            response = snapshot.docs.map((doc) => doc.data()).toList();
+          }
+          mechanicList.value = response
+              .where((element) => element['role'] == 'Mechanic')
+              .map((e) => e['email'])
+              .cast<String>()
+              .toList();
+        },
+      );
+    } catch (e) {
+      // Handle any errors during the fetching process
+      print('Error fetching mechanics: $e');
+      toast('Error fetching mechanics');
+    }
   }
 
   Future<void> onTapSubmit() async {
