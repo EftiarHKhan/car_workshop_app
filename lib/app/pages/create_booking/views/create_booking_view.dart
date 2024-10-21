@@ -2,6 +2,7 @@ import 'package:car_workshop_app/app/core/base/base_controller.dart';
 import 'package:car_workshop_app/app/core/values/app_colors.dart';
 import 'package:car_workshop_app/app/core/values/custom_functions.dart';
 import 'package:car_workshop_app/app/core/widget/button_component.dart';
+import 'package:car_workshop_app/app/core/widget/custom_date_picker.dart';
 import 'package:car_workshop_app/app/core/widget/text_widget.dart';
 import 'package:dropdown_flutter/custom_dropdown.dart';
 import 'package:flutter/material.dart';
@@ -331,14 +332,21 @@ class CreateBookingView extends BaseView<CreateBookingController> {
                   fontWeight: FontWeight.w400,
                 ),
                 4.height,
-                TextFormField(
-                  controller: controller.customerEmailController,
-                  textInputAction: TextInputAction.next,
-                  decoration: primaryInputDecoration(
-                    hintText: 'e.g. 2024-10-24',
+                CustomDatePicker(
+                  selectedDate: controller.startDateController.text,
+                  hint: controller.startDateController.text.isNotEmpty
+                      ? controller.startDateController.text
+                      : 'Select date',
+                  isRequired: false,
+                  errorText: 'Field is required',
+                  enabledBorder: true,
+                  contentPadding: const EdgeInsets.only(
+                    left: 10,
+                    right: 10,
                   ),
-                  validator: requiredValidator,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  onChangedDate: (value) {
+                    controller.startDateController.text = value ?? '';
+                  },
                 ),
                 16.height,
                 TextWidget(
@@ -347,14 +355,21 @@ class CreateBookingView extends BaseView<CreateBookingController> {
                   fontWeight: FontWeight.w400,
                 ),
                 4.height,
-                TextFormField(
-                  controller: controller.customerPhoneController,
-                  textInputAction: TextInputAction.next,
-                  decoration: primaryInputDecoration(
-                    hintText: 'e.g. 2024-10-28',
+                CustomDatePicker(
+                  selectedDate: controller.endDateController.text,
+                  hint: controller.endDateController.text.isNotEmpty
+                      ? controller.endDateController.text
+                      : 'Select date',
+                  isRequired: false,
+                  errorText: 'Field is required',
+                  enabledBorder: true,
+                  contentPadding: const EdgeInsets.only(
+                    left: 10,
+                    right: 10,
                   ),
-                  validator: requiredValidator,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  onChangedDate: (value) {
+                    controller.endDateController.text = value ?? '';
+                  },
                 ),
               ],
             ),

@@ -19,8 +19,8 @@ class CreateBookingController extends BaseController {
   final customerPhoneController = TextEditingController();
 
   final bookingTitleController = TextEditingController();
-  final startDate = ''.obs;
-  final endDate = ''.obs;
+  final startDateController = TextEditingController();
+  final endDateController = TextEditingController();
   final mechanicList = Rx<List<String>?>(null);
   final selectedMechanic = ''.obs;
 
@@ -73,8 +73,8 @@ class CreateBookingController extends BaseController {
             'customerEmail': customerEmailController.text.trim(),
             'customerPhone': customerPhoneController.text.trim(),
             'bookingTitle': bookingTitleController.text.trim(),
-            'startDate': startDate.value,
-            'endDate': endDate.value,
+            'startDate': startDateController.text.trim(),
+            'endDate': endDateController.text.trim(),
             'mechanic': selectedMechanic.value,
             'createdAt': FieldValue.serverTimestamp(),
           },

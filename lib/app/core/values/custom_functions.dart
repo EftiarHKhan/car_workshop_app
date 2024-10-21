@@ -16,11 +16,12 @@ InputDecoration primaryInputDecoration({
   return InputDecoration(
     hintText: hintText,
     hintStyle: const TextStyle(
-        fontSize: 14,
-        color: Color(0xFF969696),
-        fontWeight: FontWeight.w400,
-        fontFamily: 'Jost',
-        height: 1.2),
+      fontSize: 14,
+      color: Color(0xFF969696),
+      fontWeight: FontWeight.w400,
+      fontFamily: 'Jost',
+      height: 1.2,
+    ),
     labelText: labelText,
     labelStyle: const TextStyle(
       fontSize: 14,
