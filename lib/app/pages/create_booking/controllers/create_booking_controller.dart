@@ -1,3 +1,5 @@
+import 'package:car_workshop_app/app/pages/bookings_list/controllers/bookings_list_controller.dart';
+import 'package:car_workshop_app/app/routes/app_pages.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -54,31 +56,40 @@ class CreateBookingController extends BaseController {
   }
 
   Future<void> onTapSubmit() async {
-    // Submit booking logic here
-
     if (checkFormValidation() == false) {
       return;
     }
 
-    /*dummyFunction();
-
-    // save booking to Firestore
-    await _firestore.collection('bookings').add(
-      {
-        'carMake': carMakeController.text.trim(),
-        'carModel': carModelController.text.trim(),
-        'carYear': carYearController.text.trim(),
-        'carRegistrationPlate': carRegistrationPlateController.text.trim(),
-        'customerName': customerNameController.text.trim(),
-        'customerEmail': customerEmailController.text.trim(),
-        'customerPhone': customerPhoneController.text.trim(),
-        'bookingTitle': bookingTitleController.text.trim(),
-        'startDate': startDate.value,
-        'endDate': endDate.value,
-        'mechanic': selectedMechanic.value,
-        'createdAt': FieldValue.serverTimestamp(),
+    // save booking to Fire store
+    await dataFetcher(
+      () async {
+        await _firestore.collection('bookings').add(
+          {
+            'carMake': carMakeController.text.trim(),
+            'carModel': carModelController.text.trim(),
+            'carYear': carYearController.text.trim(),
+            'carRegistrationPlate': carRegistrationPlateController.text.trim(),
+            'customerName': customerNameController.text.trim(),
+            'customerEmail': customerEmailController.text.trim(),
+            'customerPhone': customerPhoneController.text.trim(),
+            'bookingTitle': bookingTitleController.text.trim(),
+            'startDate': startDate.value,
+            'endDate': endDate.value,
+            'mechanic': selectedMechanic.value,
+            'createdAt': FieldValue.serverTimestamp(),
+          },
+        );
       },
-    );*/
+    );
+
+    final bookingListController = Get.find<BookingsListController>();
+    await bookingListController.fetchBookings();
+    Get.offAndToNamed(
+      Routes.bookingsList,
+      arguments: {
+        'role': 'Admin',
+      },
+    );
   }
 
   bool checkFormValidation() {
@@ -87,20 +98,5 @@ class CreateBookingController extends BaseController {
     }
 
     return false;
-  }
-
-  void dummyFunction() {
-    // Dummy function
-    carMakeController.text = 'Mercedes-Benz';
-    carModelController.text = 'C-Class';
-    carYearController.text = '2020';
-    carRegistrationPlateController.text = 'ABC1234';
-    customerNameController.text = 'Abir Doe';
-    customerEmailController.text = 'abirdoe@gmail.com';
-    customerPhoneController.text = '1234567890';
-    bookingTitleController.text = 'Full Service';
-    startDate.value = '2024-12-08';
-    endDate.value = '2024-12-10';
-    selectedMechanic.value = 'akik@gmail.com';
   }
 }

@@ -365,6 +365,9 @@ class CreateBookingView extends BaseView<CreateBookingController> {
   }
 
   Widget _buildAssignMechanic() {
+    if (controller.mechanicList.value == null) {
+      return Container();
+    }
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
