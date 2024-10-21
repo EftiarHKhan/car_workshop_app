@@ -171,6 +171,7 @@ class BookingDetailsView extends BaseView<BookingDetailsController> {
               children: [
                 Row(
                   mainAxisAlignment: spaceBetweenMAA,
+                  crossAxisAlignment: startCAA,
                   children: [
                     TextWidget(
                       text: 'Booking Title',
@@ -178,11 +179,18 @@ class BookingDetailsView extends BaseView<BookingDetailsController> {
                       fontWeight: FontWeight.w500,
                       textColor: Colors.black,
                     ),
-                    TextWidget(
-                      text: '${controller.bookingDetails.value?.bookingTitle}',
-                      size: 16,
-                      fontWeight: FontWeight.w500,
-                      textColor: Colors.black,
+                    16.width,
+                    Expanded(
+                      child: TextWidget(
+                        text:
+                            '${controller.bookingDetails.value?.bookingTitle}',
+                        size: 16,
+                        fontWeight: FontWeight.w500,
+                        textColor: Colors.black,
+                        maxLine: 2,
+                        textOverflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.end,
+                      ),
                     ),
                   ],
                 ),

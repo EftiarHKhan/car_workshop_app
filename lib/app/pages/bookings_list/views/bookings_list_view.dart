@@ -215,6 +215,17 @@ class BookingsListView extends BaseView<BookingsListController> {
   }
 
   Widget _buildBookingList() {
+    if (controller.filteredBookingList.value == null ||
+        controller.filteredBookingList.value!.isEmpty) {
+      return Center(
+        child: TextWidget(
+          text: 'No bookings found',
+          size: 18,
+          fontWeight: FontWeight.w600,
+        ),
+      );
+    }
+
     return ListView.builder(
       itemCount: controller.filteredBookingList.value?.length ?? 0,
       shrinkWrap: true,
@@ -236,13 +247,16 @@ class BookingsListView extends BaseView<BookingsListController> {
       ),
       child: Container(
         padding: const EdgeInsets.all(12),
-        margin: const EdgeInsets.symmetric(vertical: 4),
+        margin: const EdgeInsets.symmetric(
+          vertical: 6,
+          horizontal: 2,
+        ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
+              color: Colors.grey.withOpacity(0.3),
               spreadRadius: 1,
               blurRadius: 2,
               offset: Offset(0, 1),
