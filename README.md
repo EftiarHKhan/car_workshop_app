@@ -208,6 +208,27 @@ This project uses GetX for state management. The relevant files are located in t
 - `nb_utils`: A package for common utility methods and widgets.
 
 ## Screenshots
+1. Splash Screen
+   ![Screenshot_20241022-154400](https://github.com/user-attachments/assets/b535882d-c471-443b-8dcc-7441b305448f)
+
+2. Login Screen (Role based)
+   ![Screenshot_20241022-154408](https://github.com/user-attachments/assets/8626ecd4-9a0c-40a6-a654-e347fb569de2)
+
+3. Registration Screen (Role based)
+   ![Screenshot_20241022-154414](https://github.com/user-attachments/assets/6c16b72d-41b5-4e9b-aa41-eb3ee5a7aec0)
+
+4. Booking List View (Role based)
+   ![Screenshot_20241022-154452](https://github.com/user-attachments/assets/8f536f3b-b622-4a3d-be8c-3feba0c83b2c)
+
+5. Calendar View of Booking List
+   ![Screenshot_20241022-154509](https://github.com/user-attachments/assets/ff6dc510-a8e0-461a-8ffa-bc9aed1168e2)
+
+6. Booking Details Screen
+   ![Screenshot_20241022-154539](https://github.com/user-attachments/assets/42a3ab26-c474-4278-8eaa-3b7bcdf9c1c1)
+
+7. Create Booking by Admin
+   ![Screenshot_20241022-154523](https://github.com/user-attachments/assets/198b6f83-f68c-4659-972a-c5af9f5218f6)
+   ![Screenshot_20241022-154529](https://github.com/user-attachments/assets/b7ae1921-b476-46a7-bbd2-442c6f02b70c)
 
 
 
