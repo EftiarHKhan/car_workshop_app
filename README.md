@@ -222,9 +222,9 @@ This project uses GetX for state management. The relevant files are located in t
      </td>
   </tr>
   <tr>
-    <td><img src="https://github.com/user-attachments/assets/8626ecd4-9a0c-40a6-a654-e347fb569de2" width=360 height=700></td>
-    <td><img src="https://github.com/user-attachments/assets/8626ecd4-9a0c-40a6-a654-e347fb569de2" width=360 height=700></td>
-    <td><img src="https://github.com/user-attachments/assets/6c16b72d-41b5-4e9b-aa41-eb3ee5a7aec0" width=360 height=700></td>
+    <td><img src="https://github.com/user-attachments/assets/b535882d-c471-443b-8dcc-7441b305448f" width=360 height=600></td>
+    <td><img src="https://github.com/user-attachments/assets/8626ecd4-9a0c-40a6-a654-e347fb569de2" width=360 height=600></td>
+    <td><img src="https://github.com/user-attachments/assets/6c16b72d-41b5-4e9b-aa41-eb3ee5a7aec0" width=360 height=600></td>
   </tr>
  </table>
 
@@ -235,9 +235,9 @@ This project uses GetX for state management. The relevant files are located in t
      <td>6. Booking Details Screen</td>
   </tr>
   <tr>
-    <td><img src="https://github.com/user-attachments/assets/8f536f3b-b622-4a3d-be8c-3feba0c83b2c" width=360 height=700></td>
-    <td><img src="https://github.com/user-attachments/assets/ff6dc510-a8e0-461a-8ffa-bc9aed1168e2" width=360 height=700></td>
-    <td><img src="https://github.com/user-attachments/assets/42a3ab26-c474-4278-8eaa-3b7bcdf9c1c1" width=360 height=700></td>
+    <td><img src="https://github.com/user-attachments/assets/8f536f3b-b622-4a3d-be8c-3feba0c83b2c" width=360 height=600></td>
+    <td><img src="https://github.com/user-attachments/assets/ff6dc510-a8e0-461a-8ffa-bc9aed1168e2" width=360 height=600></td>
+    <td><img src="https://github.com/user-attachments/assets/42a3ab26-c474-4278-8eaa-3b7bcdf9c1c1" width=360 height=600></td>
   </tr>
  </table>
 
@@ -247,21 +247,27 @@ This project uses GetX for state management. The relevant files are located in t
      <td>7. Create Booking by Admin</td>
   </tr>
   <tr>
-    <td><img src="https://github.com/user-attachments/assets/198b6f83-f68c-4659-972a-c5af9f5218f6" width=360 height=700></td>
-    <td><img src="https://github.com/user-attachments/assets/b7ae1921-b476-46a7-bbd2-442c6f02b70c" width=360 height=700></td>
+    <td><img src="https://github.com/user-attachments/assets/198b6f83-f68c-4659-972a-c5af9f5218f6" width=340 height=700></td>
+    <td><img src="https://github.com/user-attachments/assets/b7ae1921-b476-46a7-bbd2-442c6f02b70c" width=340 height=700></td>
   </tr>
  </table>
  
 
  ## Video preview
 
-
+https://drive.google.com/file/d/1pfoy-A40RV8Xm2EVdspfOeE9KILC6oip/view?usp=sharing
 
 ## Apk for Android
 
+https://drive.google.com/file/d/1YGawLnW0CAYApvE30UDXSwpcdaSU3yB_/view?usp=sharing
+
+## Thank you for your review
 
 
-## Thank you for review
+
+
+
+
 
 
 
