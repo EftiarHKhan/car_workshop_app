@@ -213,36 +213,59 @@ This project uses GetX for state management. The relevant files are located in t
   <tr>
     <td>
        1. Splash Screen
-   ![Screenshot_20241022-154400](https://github.com/user-attachments/assets/b535882d-c471-443b-8dcc-7441b305448f)
     </td>
      <td>
         2. Login Screen (Role based)
-   ![Screenshot_20241022-154408](https://github.com/user-attachments/assets/8626ecd4-9a0c-40a6-a654-e347fb569de2)
      </td>
      <td>
         3. Registration Screen (Role based)
-   ![Screenshot_20241022-154414](https://github.com/user-attachments/assets/6c16b72d-41b5-4e9b-aa41-eb3ee5a7aec0)
      </td>
   </tr>
   <tr>
-    <td><img src="https://github.com/user-attachments/assets/8626ecd4-9a0c-40a6-a654-e347fb569de2" width=360 height=800></td>
-    <td><img src="https://github.com/user-attachments/assets/8626ecd4-9a0c-40a6-a654-e347fb569de2" width=360 height=800></td>
-    <td><img src="https://github.com/user-attachments/assets/6c16b72d-41b5-4e9b-aa41-eb3ee5a7aec0" width=360 height=800></td>
+    <td><img src="https://github.com/user-attachments/assets/8626ecd4-9a0c-40a6-a654-e347fb569de2" width=360 height=700></td>
+    <td><img src="https://github.com/user-attachments/assets/8626ecd4-9a0c-40a6-a654-e347fb569de2" width=360 height=700></td>
+    <td><img src="https://github.com/user-attachments/assets/6c16b72d-41b5-4e9b-aa41-eb3ee5a7aec0" width=360 height=700></td>
   </tr>
  </table>
 
  <table>
   <tr>
-    <td>1. Splash Screen</td>
-     <td>2. Login Screen (Role based)</td>
-     <td>3. Registration Screen (Role based)</td>
+    <td>4. Booking List View (Role based)</td>
+     <td>5. Calendar View of Booking List</td>
+     <td>6. Booking Details Screen</td>
   </tr>
   <tr>
-    <td><img src="https://github.com/user-attachments/assets/b535882d-c471-443b-8dcc-7441b305448f" width=360 height=800></td>
-    <td><img src="https://github.com/user-attachments/assets/8626ecd4-9a0c-40a6-a654-e347fb569de2" width=360 height=800></td>
-    <td><img src="https://github.com/user-attachments/assets/6c16b72d-41b5-4e9b-aa41-eb3ee5a7aec0" width=360 height=800></td>
+    <td><img src="https://github.com/user-attachments/assets/8f536f3b-b622-4a3d-be8c-3feba0c83b2c" width=360 height=700></td>
+    <td><img src="https://github.com/user-attachments/assets/ff6dc510-a8e0-461a-8ffa-bc9aed1168e2" width=360 height=700></td>
+    <td><img src="https://github.com/user-attachments/assets/42a3ab26-c474-4278-8eaa-3b7bcdf9c1c1" width=360 height=700></td>
   </tr>
  </table>
+
+ <table>
+  <tr>
+    <td>7. Create Booking by Admin</td>
+     <td>7. Create Booking by Admin</td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/198b6f83-f68c-4659-972a-c5af9f5218f6" width=360 height=700></td>
+    <td><img src="https://github.com/user-attachments/assets/b7ae1921-b476-46a7-bbd2-442c6f02b70c" width=360 height=700></td>
+  </tr>
+ </table>
+ 
+
+ ## Video preview
+
+
+
+## Apk for Android
+
+
+
+## Thank you for review
+
+
+
+
 
 1. Splash Screen
    ![Screenshot_20241022-154400](https://github.com/user-attachments/assets/b535882d-c471-443b-8dcc-7441b305448f)
@@ -268,14 +291,6 @@ This project uses GetX for state management. The relevant files are located in t
 
 
 
-## Video preview
 
-
-
-## Apk for Android
-
-
-
-## Thank you for review
 
 
