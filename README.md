@@ -216,7 +216,7 @@ This project uses GetX for state management. The relevant files are located in t
      <td>3. Registration Screen (Role based)</td>
   </tr>
   <tr>
-    <td><img src="![Screenshot_20241022-154400](https://github.com/user-attachments/assets/b535882d-c471-443b-8dcc-7441b305448f)" width=270 height=480></td>
+    <td> ![Screenshot_20241022-154400](https://github.com/user-attachments/assets/b535882d-c471-443b-8dcc-7441b305448f) </td>
     <td><img src="![Screenshot_20241022-154408](https://github.com/user-attachments/assets/8626ecd4-9a0c-40a6-a654-e347fb569de2)" width=270 height=480></td>
     <td><img src="![Screenshot_20241022-154414](https://github.com/user-attachments/assets/6c16b72d-41b5-4e9b-aa41-eb3ee5a7aec0)" width=270 height=480></td>
   </tr>
